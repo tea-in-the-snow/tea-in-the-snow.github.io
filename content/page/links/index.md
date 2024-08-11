@@ -16,6 +16,6 @@ menu:
             icon: tool
 
 comments: false
-license.enabled: false
+license: false
 readingTime: false
 ---

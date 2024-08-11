@@ -1,6 +1,11 @@
 ---
 title: 一些编程环境的配置 (Neovim + Alacritty + Oh-My-Zsh)
 date: 2024-01-05 00:00:00+0000
+categories:
+    - Tools and Configuration
+tags:
+    - Neovim
+    - Alacritty
 ---
 
 ## 写在前面
