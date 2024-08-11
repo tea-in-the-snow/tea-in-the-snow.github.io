@@ -1,5 +1,8 @@
 ---
-title: "工具"
+title: "Tools"
+comments: false
+license: false
+readingTime: false
 links:
   - title: GitHub
     description: GitHub is the world's largest software development platform.
@@ -13,9 +16,5 @@ menu:
     main: 
         weight: 4
         params:
-            icon: tool
-
-comments: false
-license: false
-readingTime: false
+            icon: links
 ---
