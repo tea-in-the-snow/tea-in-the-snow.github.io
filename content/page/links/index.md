@@ -8,12 +8,12 @@ links:
   - title: Fedora
     deccription: An innovative platform for hardware, clouds, and containers, built with love by you.
     website: https://fedoraproject.org/
-    image: fedora.png
+    image: "./fedora.png"
 menu:
     main: 
         weight: 4
         params:
-            icon: link
+            icon: tool
 
 comments: false
 license.enabled: false
