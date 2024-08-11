@@ -7,7 +7,7 @@ links:
     image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
   - title: Fedora
     deccription: An innovative platform for hardware, clouds, and containers, built with love by you.
-    website: https://https://fedoraproject.org/
+    website: https://fedoraproject.org/
     image: fedora.png
 menu:
     main: 
@@ -17,5 +17,3 @@ menu:
 
 comments: false
 ---
-
-一些我的生活中不可缺少的工具。
