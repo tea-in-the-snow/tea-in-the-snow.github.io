@@ -1,5 +1,5 @@
 ---
-title: "链接"
+title: "工具"
 links:
   - title: GitHub
     description: GitHub is the world's largest software development platform.
@@ -16,4 +16,6 @@ menu:
             icon: link
 
 comments: false
+license.enabled: false
+readingTime: false
 ---
