@@ -25,3 +25,5 @@ Want a site like this? Check out [hugo-theme-stack-stater](https://github.com/Ca
 int main() {
     int a = 0;
 }
+
+中文测试。
