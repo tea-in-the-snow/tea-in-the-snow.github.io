@@ -13,7 +13,7 @@ links:
     description: An innovative platform for hardware, clouds, and containers, built with love by you.
     website: https://fedoraproject.org/
     image: fedora.png
-  - title: zsh
+  - title: Zsh
     description: Zsh is a shell designed for interactive use, although it is also a powerful scripting language.
     website: https://www.zsh.org/
     image: zsh.png
@@ -29,11 +29,11 @@ links:
     description: Warp is the terminal reimagined with AI and collaborative tools for better productivity.
     website: https://www.warp.dev/
     image: warp.png
-  - title: starship
+  - title: Starship
     description: The minimal, blazing-fast, and infinitely customizable prompt for any shell.
     website: https://starship.rs/
     image: starship.png
-  - title: lazygit
+  - title: Lazygit
     description: A simple terminal UI for git commands.
     website: https://github.com/jesseduffield/lazygit
     image: lazygit.png
