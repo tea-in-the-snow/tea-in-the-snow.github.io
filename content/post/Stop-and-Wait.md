@@ -1,6 +1,6 @@
 ---
 title: "C 语言实现对 Stop-and-Wait 协议的模拟"
-date: 2023-09-15:01:37+08:00
+date: 2023-09-15 01:37:42+0800
 comments: true
 categories:
     - Computer Network

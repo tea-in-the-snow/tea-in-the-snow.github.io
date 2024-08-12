@@ -1,8 +1,8 @@
 ---
 title: Warp 
-date: 2024-02-23:21:10+0800
+date: 2024-02-23 21:10:00+0800
 categories:
-    - Tools_and_configuration
+    - Tools and Configuration
 tags:
     - warp
 ---

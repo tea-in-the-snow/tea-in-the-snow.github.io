@@ -1,6 +1,6 @@
 ---
 title: "C 语言实现对 Go-Back-N 协议的模拟"
-date: 2023-09-05:02:37+08:00
+date: 2023-09-05 02:37:03+0800
 comments: true
 categories:
     - Computer Network
