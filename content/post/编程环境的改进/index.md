@@ -34,7 +34,7 @@ tags:
 
 - 这是我使用的一些 Gnome 插件：
 
-![Gnome 插件](Gnome%20extentions.png)
+![Gnome 插件](Gnome_extentions.png)
 
 - 我还使用了 Github 上的[图标主题](https://github.com/vinceliuice/WhiteSur-icon-theme)，[gtk 主题](https://github.com/vinceliuice/WhiteSur-gtk-theme)以及[grub 主题](https://github.com/vinceliuice/grub2-themes)。
 
