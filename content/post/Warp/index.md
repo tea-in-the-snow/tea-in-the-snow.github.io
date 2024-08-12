@@ -4,7 +4,7 @@ date: 2024-02-23 21:10:00+0800
 categories:
     - Tools and Configuration
 tags:
-    - warp
+    - Warp
 ---
 
 今天 Warp 终于发布了 Linux 版本，这是一个用 Rust 编写的终端，同样使用 GPU 加速。Warp 自称 "The terminal for the 12th century"，设计非常的现代、美观，还自带了 AI 功能。之前只有 MacOS 版本，今天发布了 Linux 版本，并且 Windows 版本一直在开发过程中。

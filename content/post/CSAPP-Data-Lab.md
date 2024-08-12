@@ -3,7 +3,6 @@ title: CSAPP Data Lab
 date: 2023-01-10 21:10:14+0800
 categories:
     - Labs
-    - CSAPP
 tags:
     - CSAPP
 ---

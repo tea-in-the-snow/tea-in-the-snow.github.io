@@ -3,7 +3,6 @@ title: CSAPP Cache Lab
 date: 2023-01-10 01:10:23+0800
 categories:
     - Labs
-    - CSAPP
 tags:
     - CSAPP
     - cache
