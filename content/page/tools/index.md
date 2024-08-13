@@ -17,6 +17,10 @@ links:
     description: Zsh is a shell designed for interactive use, although it is also a powerful scripting language.
     website: https://www.zsh.org/
     image: zsh.png
+  - title: Homebrew
+    description: The missing package manager for macOS (or Linux).
+    website: https://brew.sh/
+    image: homebrew.png
   - title: Neovim
     description: Hyperextensible Vim-based text editor.
     website: https://neovim.io/
