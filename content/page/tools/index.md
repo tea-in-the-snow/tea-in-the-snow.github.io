@@ -53,6 +53,10 @@ links:
     description: A tool to detect bugs in Java and C/C++/Objective-C code before it ships
     website: https://fbinfer.com/
     image: infer.png
+  - title: Tabnine
+    description: The AI code assistant that you control.
+    website: https://www.tabnine.com/
+    image: tabnine.png
 menu:
     main: 
         weight: 4
