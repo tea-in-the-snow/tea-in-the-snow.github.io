@@ -307,5 +307,3 @@ Ending pool-1-thread-2. Finishing task 15
 ## ThreadLocal
 
 ThreadLocal让我们能够存储只能被特定线程保存的数据。
-
-例如：如果我们想要有存储一个与特定线程绑定的Integer
