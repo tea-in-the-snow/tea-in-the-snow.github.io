@@ -2,7 +2,7 @@
 title: 编程环境的改进(Fedora + Zinit + kitty) 
 date: 2024-08-09 21:06:00+0800
 categories:
-    - Tools and Configuration
+    - Tools and Configurations
 tags:
     - Fedora
     - kitty

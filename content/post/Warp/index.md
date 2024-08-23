@@ -2,7 +2,7 @@
 title: Warp 
 date: 2024-02-23 21:10:00+0800
 categories:
-    - Tools and Configuration
+    - Tools and Configurations
 tags:
     - Warp
 ---
