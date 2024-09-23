@@ -9,10 +9,26 @@ links:
     description: GitHub is the world's largest software development platform.
     website: https://github.com
     image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  - title: Arch
+    description: A lightweight and flexible Linux distribution that tries to Keep It Simple.
+    website: https://archlinux.org/
+    image: arch.svg
   - title: Fedora
     description: An innovative platform for hardware, clouds, and containers, built with love by you.
     website: https://fedoraproject.org/
     image: fedora.png
+  - title: Btrfs
+    description: BTRFS is a modern copy on write (COW) filesystem for Linux aimed at implementing advanced features while also focusing on fault tolerance, repair and easy administration.
+    website: https://btrfs.readthedocs.io/en/latest/
+    image: btrfs.svg
+  - title: KDE Plasma
+    description: The next generation desktop for Linux.
+    wesite: https://kde.org/plasma-desktop/
+    image: plasma.png
+  - title: Hyprland
+    description: Tiling compositor with the looks. Hyprland provides the latest Wayland features, dynamic tiling, all the eyecandy, powerful plugins and more.
+    website: https://hyprland.org/
+    image: hyprland.png
   - title: Zsh
     description: Zsh is a shell designed for interactive use, although it is also a powerful scripting language.
     website: https://www.zsh.org/
@@ -29,6 +45,10 @@ links:
     description: The fast, feature-rich, GPU based terminal emulator.
     website: https://sw.kovidgoyal.net/kitty/
     image: kitty.png
+  - title: WezTerm
+    description: WezTerm is a powerful cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust.
+    website: https://wezfurlong.org/wezterm/index.html
+    image: wezterm.svg
   - title: Warp
     description: Warp is the terminal reimagined with AI and collaborative tools for better productivity.
     website: https://www.warp.dev/
@@ -58,8 +78,8 @@ links:
     website: https://www.tabnine.com/
     image: tabnine.png
 menu:
-    main: 
-        weight: 4
-        params:
-            icon: link
+  main:
+    weight: 4
+    params:
+      icon: link
 ---
