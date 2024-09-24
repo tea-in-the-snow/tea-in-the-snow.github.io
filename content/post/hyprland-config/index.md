@@ -5,7 +5,7 @@ date: 2024-09-22T14:10:16+08:00
 image:
 hidden: false
 comments: true
-draft: true
+draft: false
 categories: [Tools and Configurations]
 tags: [Arch, Hyprland]
 ---
@@ -69,6 +69,8 @@ sudo pacman -S waybar
 ```config
 exec-once = waybar
 ```
+
+配置 `waybar` 外观：![配置文件](https://github.com/tea-in-the-snow/system_configuration/tree/main/hyprland/waybar)
 
 ### 壁纸
 
