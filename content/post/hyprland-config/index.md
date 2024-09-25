@@ -220,13 +220,19 @@ bind = $mainMod Ctrl, right, workspace, e+1
 
 ### 配置移动当前窗口到前一个和后一个工作区的键位
 
+```terminal
 bind = $mainMod Shift, H, movetoworkspace, -1
 bind = $mainMod Shift, L, movetoworkspace, +1
 bind = $mainMod Shift, left, movetoworkspace, -1
 bind = $mainMod Shift, right, movetoworkspace, +1
+```
 
 ## 最终效果
 
 ![Hyprland](hyprland.png)
 
 ![Hyprland](hyprland-2.png)
+
+```
+
+```
