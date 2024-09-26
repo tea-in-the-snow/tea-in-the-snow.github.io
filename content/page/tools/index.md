@@ -9,6 +9,10 @@ links:
     description: GitHub is the world's largest software development platform.
     website: https://github.com
     image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  - title: openSUSE Tumbleweed
+    description: The Tumbleweed distribution is a pure rolling release version of openSUSE containing the latest "stable" versions of all software instead of relying on rigid periodic release cycles.
+    website: https://www.opensuse.org/#Tumbleweed
+    image: openSUSE-TW.png
   - title: Arch
     description: A lightweight and flexible Linux distribution that tries to Keep It Simple.
     website: https://archlinux.org/
