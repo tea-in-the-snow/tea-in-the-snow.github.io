@@ -1,6 +1,6 @@
 ---
 title: "用 systemd 配置 Docker 使用代理访问 Docker Hub 拉取镜像"
-description: 
+description:
 date: 2024-08-23T12:51:02+08:00
 hidden: false
 comments: true
@@ -30,7 +30,7 @@ xxx 部分填写自己的代理地址。
 配置好后重启服务：
 
 ```terminal
-sudo systemctl daemon reload
+sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
