@@ -70,3 +70,5 @@ openSUSE 还有一个特殊的地方在于它使用了 MirrorBrain 技术统一�
 ## 我的选择：openSUSE Tumbleweed
 
 经过了这么一大圈的折腾，最终我还是选择了 openSUSE Tumbleweed。但其实不同的发行版在使用体验上可能或多或少有一些差异，但真正工作起来其实本质上都差不多。从这个角度说，我花在反复安装不同发行版上的时间其实就是浪费，我在这些事情上花费的时间还是太多了。现在我在自己的电脑（双系统）和实验室的小主机上都装着 openSUSE Tumbleweed，希望以后非必要不要就再换了，毕竟 openSUSE Tumbleweed 已经让我非常满意了。当然其实现在的主流发行版我也都体验的差不多了，基本上只有 Gentoo 和 NixOS没有体验过，在短时间内我都应该不会在把时间花在这上面了，现在的任务是在 openSUSE Tumbleweed 系统上好好工作（科研）~
+
+p.s. 后来发现在 openSUSE Tumbleweed 上安装的 easyconnect 的 rpm 包不能正常工作，所以在自己的电脑上的系统又换成了 Arch ～
