@@ -70,7 +70,7 @@ sudo pacman -S waybar
 exec-once = waybar
 ```
 
-配置 `waybar` 外观：![配置文件](https://github.com/tea-in-the-snow/system_configuration/tree/main/hyprland/waybar)
+配置 `waybar` 外观：[配置文件](https://github.com/tea-in-the-snow/system_configuration/tree/main/hyprland/waybar)
 
 ### 壁纸
 
