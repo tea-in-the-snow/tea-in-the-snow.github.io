@@ -1,5 +1,5 @@
 ---
-title: "Fuzzing"
+title: "Fuzzing简单了解"
 description: 
 date: 2025-03-11T09:14:29+08:00
 categories:
@@ -8,7 +8,7 @@ tags:
     - Fuzzing
 hidden: false
 comments: true
-draft: true
+draft: false
 ---
 
 模糊测试（fuzzing）指的是通过反复运行程序并生成可能在语法和语义上存在错误的输入来进行的测试过程。模糊测试通过向系统引入意外的输入，并观察系统对这些输入是否产生任何负面反应，从而揭示出安全、性能或质量方面的差距或问题。
