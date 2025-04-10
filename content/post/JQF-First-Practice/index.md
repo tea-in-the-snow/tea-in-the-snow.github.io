@@ -8,7 +8,7 @@ tags:
     - JQF
 hidden: false
 comments: true
-draft: true
+draft: false
 ---
 
 [JQF](https://github.com/rohanpadhye/JQF) 是一个基于反馈导向的模糊测试平台，专为 Java 设计（可以理解为 JVM 字节码版的 AFL/LibFuzzer）。JQF 采用了基于属性测试的抽象概念，这使得编写模糊测试驱动程序就像编写参数化的 JUnit 测试方法一样简单。JQF 构建在 junit-quickcheck 之上，能够以覆盖引导的模糊测试算法（如 Zest）的强大功能来运行 junit-quickcheck 风格的参数化单元测试。
