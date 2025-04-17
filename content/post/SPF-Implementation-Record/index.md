@@ -2,6 +2,10 @@
 title: "SPF 实践记录"
 description: "SPF(Symbolic PathFinder) 的配置以及使用记录"
 date: 2025-04-17T09:41:15+08:00
+categories:
+    - Program Analysis
+tags:
+    - Symbolic Execution
 hidden: false
 comments: false
 draft: true
