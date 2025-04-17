@@ -1,9 +1,9 @@
 ---
 title: "SPF 实践记录"
 description: "SPF(Symbolic PathFinder) 的配置以及使用记录"
-date: 2025-04-10T09:41:15+08:00
+date: 2025-04-17T09:41:15+08:00
 hidden: false
-comments: true
+comments: false
 draft: true
 ---
 
@@ -247,5 +247,424 @@ loaded code:        classes=87,methods=2345
 ====================================================== search finished: 4/10/25, 10:47 AM
 ```
 
-### 收集约束
+### 打印 Path Condition (PC)
+
+利用 `Debug.printPC()` 可以打印不同路径的条件：
+
+```java
+package mytests;
+
+import gov.nasa.jpf.symbc.Debug;
+
+public class CollectConstraints {
+	public static void test(int x, int y) {
+		int z = x + y;
+		if (z != 0) {
+			if (x > 0) {
+				System.out.println("Visiting the branch x > 0");
+			} else {
+				System.out.println("Visiting the branch y < 0");
+			}
+		} else {
+			System.out.println("Visiting the branch z == 0");
+		}
+
+		Debug.printPC("PC ");
+	}
+
+	// The test driver
+	public static void main(String[] args) {
+		int x = 2;
+		int y = 3;
+		// x = Debug.addSymbolicInt(x, "sym_x");
+		// y = Debug.addSymbolicInt(y, "sym_y");
+		test(x, y);
+	}
+}
+```
+
+```properties
+target=mytests.CollectConstraints
+classpath=${jpf-symbc}/build/examples
+sourcepath=${jpf-symbc}/src/examples
+symbolic.method = mytests.CollectConstraints.test(sym#sym)
+symbolic.dp=z3
+symbolic.optimizechoices=false
+
+#symbolic.debug=true
+
+# listener = .symbc.SymbolicListener
+
+listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener
+```
+
+进行分析，输出为：
+
+```terminal
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev 052390b95ebe2bca062c31e6c1e52a6f13d68d5f) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+mytests.CollectConstraints.main()
+
+====================================================== search started: 4/14/25, 10:04 AM
+[WARNING] orphan NativePeer method: jdk.internal.misc.Unsafe.getUnsafe()Lsun/misc/Unsafe;
+Visiting the branch x > 0
+PC constraint # = 2
+x_1_SYMINT > CONST_0 &&
+(y_2_SYMINT + x_1_SYMINT) != CONST_0
+Visiting the branch y < 0
+PC constraint # = 2
+x_1_SYMINT <= CONST_0 &&
+(y_2_SYMINT + x_1_SYMINT) != CONST_0
+Visiting the branch z == 0
+PC constraint # = 1
+(y_2_SYMINT + x_1_SYMINT) == CONST_0
+
+====================================================== Method Sequences
+[test(1,-2)]
+[test(0,-1)]
+[test(0,0)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class mytests_CollectConstraintsTest {
+
+        private mytests.CollectConstraints mytests_collectconstraints;
+
+        @Before
+        public void setUp() throws Exception {
+                mytests_collectconstraints = new mytests.CollectConstraints();
+        }
+
+        @Test
+        public void test0() {
+                mytests_collectconstraints.test(1,-2);
+        }
+
+        @Test
+        public void test1() {
+                mytests_collectconstraints.test(0,-1);
+        }
+
+        @Test
+        public void test2() {
+                mytests_collectconstraints.test(0,0);
+        }
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=6,visited=0,backtracked=6,end=3
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
+heap:               new=522,released=42,maxLive=486,gcCycles=4
+instructions:       9255
+max memory:         124MB
+loaded code:        classes=82,methods=1800
+
+====================================================== search finished: 4/14/25, 10:04 AM
+```
+
+### Assume
+
+利用 `Debug.assume()`，可以指定条件进行分析：
+
+```java
+package mytests;
+
+import gov.nasa.jpf.symbc.Debug;
+
+public class CollectConstraints {
+	public static void test(int x, int y) {
+		int z = x + y;
+		Debug.assume(z != 0);
+		if (z != 0) {
+			if (x > 0) {
+				System.out.println("Visiting the branch x > 0");
+			} else {
+				System.out.println("Visiting the branch y < 0");
+			}
+		} else {
+			System.out.println("Visiting the branch z == 0");
+		}
+
+		Debug.printPC("PC ");
+	}
+
+	// The test driver
+	public static void main(String[] args) {
+		int x = 2;
+		int y = 3;
+		// x = Debug.addSymbolicInt(x, "sym_x");
+		// y = Debug.addSymbolicInt(y, "sym_y");
+		test(x, y);
+	}
+}
+```
+
+```terminal
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev 052390b95ebe2bca062c31e6c1e52a6f13d68d5f) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+mytests.CollectConstraints.main()
+
+====================================================== search started: 4/14/25, 10:07 AM
+[WARNING] orphan NativePeer method: jdk.internal.misc.Unsafe.getUnsafe()Lsun/misc/Unsafe;
+Visiting the branch x > 0
+PC constraint # = 2
+x_1_SYMINT > CONST_0 &&
+(y_2_SYMINT + x_1_SYMINT) != CONST_0
+Visiting the branch y < 0
+PC constraint # = 2
+x_1_SYMINT <= CONST_0 &&
+(y_2_SYMINT + x_1_SYMINT) != CONST_0
+
+====================================================== Method Summaries
+Inputs: x_1_SYMINT,y_2_SYMINT
+
+mytests.CollectConstraints.test(1,-2)  --> Return Value: --
+mytests.CollectConstraints.test(-1,0)  --> Return Value: --
+
+====================================================== Method Summaries (HTML)
+<h1>Test Cases Generated by Symbolic JavaPath Finder for mytests.CollectConstraints.test (Path Coverage) </h1>
+<table border=1>
+<tr><td>x_1_SYMINT</td><td>y_2_SYMINT</td><td>RETURN</td></tr>
+<tr><td>1</td><td>-2</td><td>Return Value: --</td></tr>
+<tr><td>-1</td><td>0</td><td>Return Value: --</td></tr>
+</table>
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=7,visited=0,backtracked=7,end=2
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
+heap:               new=515,released=33,maxLive=489,gcCycles=4
+instructions:       9244
+max memory:         124MB
+loaded code:        classes=82,methods=1800
+
+====================================================== search finished: 4/14/25, 10:07 AM
+```
+
+## 引入其他 Java 库进行测试
+
+需要在 gradle 的配置文件中添加依赖，要注意的是，main 源码包以外的源码包（比如example）的依赖添加需要指定源码包：
+
+```groovy
+dependencies {
+    ......
+    
+    examplesImplementation 'net.time4j:time4j-base:5.9.4'
+
+    ......
+}
+```
+
+<!-- 为了后续的方便，在 `build.gradle` 中添加如下的任务： -->
+
+<!-- ```java
+task downloadSources(type: Copy) {
+    from configurations.compileClasspath
+    into "$buildDir/libs/sources"
+    include "**/time4j-base-5.9.4-sources.jar"
+}
+```
+
+然后运行：`gradle downloadSources`，会将 time4j 的 jar 包下载到 -->
+
+编写对应的测试驱动类：
+
+```java
+package mytests;
+
+import gov.nasa.jpf.symbc.Debug;
+import net.time4j.base.MathUtils;
+
+public class TestTime4J {
+    public static void test(long num) {
+        MathUtils.safeCast(num);
+
+        Debug.printPC("PC ");
+    }
+    public static void main(String[] args) {
+        long num = 0;
+        test(num);
+    }
+}
+```
+
+为了方便，把 gradle 下载的 time4j 的 jar 包复制到了项目目录下，并且在 jpf 配置文件中指明 classpath, sourcepath
+
+```properties
+target=mytests.TestTime4J
+classpath=${jpf-symbc}/build/examples:\
+${jpf-symbc}/lib-to-be-tested/time4j-base-5.9.4.jar
+sourcepath=${jpf-symbc}/src/examples:\
+${jpf-symbc}/lib-to-be-tested/sources/time4j-base-5.9.4-sources.jar
+symbolic.method = mytests.TestTime4J.test(sym)
+
+symbolic.dp=z3
+symbolic.optimizechoices=false
+
+#symbolic.debug=true
+
+listener = .symbc.SymbolicListener
+```
+
+输出如下：
+
+```terminal
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev 052390b95ebe2bca062c31e6c1e52a6f13d68d5f) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+mytests.TestTime4J.main()
+
+====================================================== search started: 4/14/25, 5:49 PM
+[WARNING] orphan NativePeer method: jdk.internal.misc.Unsafe.getUnsafe()Lsun/misc/Unsafe;
+PC constraint # = 2
+num_1_SYMINT < CONST_2147483647 &&
+num_1_SYMINT < CONST_-2147483648
+PC constraint # = 2
+num_1_SYMINT < CONST_2147483647 &&
+CONST_-2147483648 == num_1_SYMINT
+PC constraint # = 2
+num_1_SYMINT < CONST_2147483647 &&
+num_1_SYMINT > CONST_-2147483648
+PC constraint # = 2
+CONST_2147483647 == num_1_SYMINT &&
+num_1_SYMINT > CONST_-2147483648
+PC constraint # = 2
+num_1_SYMINT > CONST_2147483647 &&
+num_1_SYMINT > CONST_-2147483648
+
+====================================================== Method Summaries
+Inputs: num_1_SYMINT
+
+mytests.TestTime4J.test(-2147483649l)  --> Return Value: --
+mytests.TestTime4J.test(-2147483648l)  --> Return Value: --
+mytests.TestTime4J.test(0l)  --> Return Value: --
+mytests.TestTime4J.test(2147483647l)  --> Return Value: --
+mytests.TestTime4J.test(2147483648l)  --> Return Value: --
+
+====================================================== Method Summaries (HTML)
+<h1>Test Cases Generated by Symbolic JavaPath Finder for mytests.TestTime4J.test (Path Coverage) </h1>
+<table border=1>
+<tr><td>num_1_SYMINT</td><td>RETURN</td></tr>
+<tr><td>-2147483649</td><td>Return Value: --</td></tr>
+<tr><td>-2147483648</td><td>Return Value: --</td></tr>
+<tr><td>0</td><td>Return Value: --</td></tr>
+<tr><td>2147483647</td><td>Return Value: --</td></tr>
+<tr><td>2147483648</td><td>Return Value: --</td></tr>
+</table>
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=13,visited=0,backtracked=13,end=5
+search:             maxDepth=3,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=529,released=60,maxLive=489,gcCycles=6
+instructions:       9313
+max memory:         124MB
+loaded code:        classes=83,methods=1814
+
+====================================================== search finished: 4/14/25, 5:49 PM
+```
+
+不过，为了方便，选择利用 gradle 来进行这个复制 jar 包的过程，在 `build.gradle` 中添加 task：
+
+```groovy
+task copyJars(type: Copy) {
+    from configurations.examplesImplementation
+    into "$buildDir/libs/jars"
+}
+```
+
+不过，运行 task `gradle spf-symbc:copyJars` 之后报错：
+
+```terminal
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':jpf-symbc:copyJars'.
+> Resolving dependency configuration 'examplesImplementation' is not allowed as it is defined as 'canBeResolved=false'.
+  Instead, a resolvable ('canBeResolved=true') dependency configuration that extends 'examplesImplementation' should be resolved.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1s
+```
+
+需要创建一个可解析的配置并且继承 examplesImplementation, 在 `build.gradle` 中添加:
+
+```groovy
+configurations {
+    resolvableExamplesImplementation {
+        canBeResolved = true  // 允许解析
+        canBeConsumed = false // 禁止被其他项目消费
+        extendsFrom examplesImplementation  // 继承原配置
+    }
+}
+```
+
+这样，运行 task `gradle spf-symbc:copyJars` 之后 gradle 就会自动将 jar 包复制到项目目录中的指定位置，不用再手动复制，在 jpf 配置文件中指定 jar 包位置等的时候会更加方便。
 
