@@ -7,8 +7,8 @@ categories:
 tags:
     - Symbolic Execution
 hidden: false
-comments: false
-draft: true
+comments: true
+draft: false
 ---
 
 ## Symbolic (Java) PathFinder
