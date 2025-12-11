@@ -77,7 +77,7 @@ make: *** [Makefile:126: util/debug.o] Error 1
 bool ok = (std::cin>>result)?true:false;
 ```
 
-构建成功后，将 `libz3.so` 和  `libz3java.so` java 能够加载的系统库目录
+构建成功后，将 `libz3.so` 和  `libz3java.so` 放入 java 能够加载的系统库目录
 
 ```bash
 sudo cp libz3.so /usr/lib/
@@ -118,7 +118,7 @@ ant
 在 `site.properties` ($HOME/.jpf) 文件中写入配置
 
 ```bash
-midir ~/.jpf
+mkdir ~/.jpf
 vim ~/.jpf/siteproperties
 ```
 
