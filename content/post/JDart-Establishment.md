@@ -85,6 +85,20 @@ sudo cp libz3java.so /usr/lib/
 sudo ldconfig
 ```
 
+注意，在 ubuntu 中，如果安装过 build-essential，可能会有冲突的 libz3.so，需要手动删除。
+
+可以通过下面的命令查看是否会有多余的 z3 库：
+
+```bash
+sudo find /usr/lib -name libz3.so*
+```
+
+如果有多余的，可以尝试利用下面的命令卸载：
+
+```bash
+sudo apt remove libz3-4
+```
+
 将 `com.microsoft.z3.jar` 安装到本地 maven 仓库中
 
 ```bash
@@ -119,7 +133,7 @@ ant
 
 ```bash
 mkdir ~/.jpf
-vim ~/.jpf/siteproperties
+vim ~/.jpf/site.properties
 ```
 
 `site.properties` 内容如下：
